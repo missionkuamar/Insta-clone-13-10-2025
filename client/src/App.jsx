@@ -1,35 +1,61 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
-const App = () => {
-  const [message, setMessage] = useState('');  // Store the message from API
-  const [error, setError] = useState('');  // Store the error message, if any
+import { createBrowserRouter } from 'react-router-dom'
+import './App.css'
+import Signup from './components/Singup'
+import { RouterProvider } from 'react-router'
+import { ProtectedRoutes } from './components/ProtectedRoutes'
+import { MainLayout } from './components/MainLayout'
+import { Home } from './components/Home'
+import Login from './components/Login'
+import { ChatPage } from './components/ChatPage'
+import { EditProfile } from './components/EditProfile'
+import { Profile } from './components/Profile'
 
-  useEffect(() => {
-    axios.get('https://insta-clone-13-10-2025.onrender.com/api/message')  // API endpoint for backend message
-      .then(response => {
-        console.log(response);
-        setMessage(response.data.message);  // Update the state with the message from the backend
-      })
-      .catch(error => {
-        console.error('There was an error fetching the data!', error);  // Log the error to console
-        setError('There was an error fetching the data!');  // Set an error message to display in the UI
-      });
-  }, []);  // Empty dependency array so the request runs once when the component mounts
+
+
+const browserRouter = createBrowserRouter([
+ 
+  {
+    path: "/",
+    element: <ProtectedRoutes><MainLayout /></ProtectedRoutes>,
+    children: [
+      {
+path: '/',
+element: <ProtectedRoutes><Home /></ProtectedRoutes>,
+      },
+      {
+        path: '/profile/:id',
+        element: <ProtectedRoutes> <Profile /></ProtectedRoutes>
+      },
+      {
+        path: '/account/edit',
+        element: <ProtectedRoutes><EditProfile /></ProtectedRoutes>
+      },
+      {
+        path: '/chat',
+        element: <ProtectedRoutes><ChatPage /></ProtectedRoutes>
+      }
+    ]
+  },
+    {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/signup',
+    element: <Signup />
+  },
+])
+
+
+function App() {
+
 
   return (
-    <div className="App">
-      <h1>Frontend & Backend Connected</h1>
-      
-      {/* Show the message from the backend */}
-      <p>{message}</p>
+    <>
+      <RouterProvider router={browserRouter} />
+    </>
+  )
+}
 
-      {/* Show error message if there was an issue fetching the data */}
-      {error && <p>{error}</p>}
-
-      {/* You don't need to use data here anymore */}
-    </div>
-  );
-};
-
-export default App;
+export default App
