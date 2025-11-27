@@ -24,6 +24,11 @@ export const CommentDialog = ({ open, setOpen}) => {
         <AvatarFallback>CN</AvatarFallback>
     </Avatar>
 </Link>
+<div>
+    <Link>
+        
+    </Link>
+</div>
                 </div>
                </div>
         </div>
