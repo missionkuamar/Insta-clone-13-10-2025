@@ -5,11 +5,11 @@ import { LeftSidebar } from './LeftSidebar'
 
 export const MainLayout = () => {
   return (
-    <div>
-         <LeftSidebar/>
-        <div>
-            <Outlet/>
-        </div>
+     <div className='flex'>
+      <LeftSidebar /> 
+      <div className='flex flex-grow ml-[20%]'>
+          <Outlet />
+      </div>
     </div>
   )
 }

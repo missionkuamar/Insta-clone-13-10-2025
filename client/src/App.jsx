@@ -3,41 +3,31 @@ import { createBrowserRouter } from 'react-router-dom'
 import './App.css'
 import Signup from './components/Singup'
 import { RouterProvider } from 'react-router'
-import { ProtectedRoutes } from './components/ProtectedRoutes'
+
 import { MainLayout } from './components/MainLayout'
 import { Home } from './components/Home'
 import Login from './components/Login'
-import { ChatPage } from './components/ChatPage'
-import { EditProfile } from './components/EditProfile'
 import { Profile } from './components/Profile'
 
 
-
 const browserRouter = createBrowserRouter([
- 
+
   {
     path: "/",
-    element: <ProtectedRoutes><MainLayout /></ProtectedRoutes>,
+    element: <MainLayout />,
     children: [
       {
-path: '/',
-element: <ProtectedRoutes><Home /></ProtectedRoutes>,
+        index: true,   
+        element: <Home />,
       },
       {
-        path: '/profile/:id',
-        element: <ProtectedRoutes> <Profile /></ProtectedRoutes>
+        path: '/profile',
+        element: <Profile />,
       },
-      {
-        path: '/account/edit',
-        element: <ProtectedRoutes><EditProfile /></ProtectedRoutes>
-      },
-      {
-        path: '/chat',
-        element: <ProtectedRoutes><ChatPage /></ProtectedRoutes>
-      }
+
     ]
   },
-    {
+  {
     path: '/login',
     element: <Login />
   },
