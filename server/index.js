@@ -9,7 +9,9 @@ import connectDB from "./utils/db.js";
  import postRoute from "./routes/post.route.js";
 import messageRoute from "./routes/message.route.js";
 
-dotenv.config();
+dotenv.config({
+  path: '../.env'
+});
 
 const app  = express()
 
