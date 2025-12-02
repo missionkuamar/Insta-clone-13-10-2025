@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAuthUser } from '@/redux/authSlice'
 import { CreatePost } from './CreatePost'
+import { setPosts, setSelectedPost } from '@/redux/postSlice'
 
 
 export const LeftSidebar = () => {
@@ -20,7 +21,10 @@ const dispatch = useDispatch()
             const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true });
             // console.log(res)
             if (res.data.success) {
+
                 dispatch(setAuthUser(null));
+                dispatch(setSelectedPost(null));
+                dispatch(setPosts([]));
                 navigate("/login");
                 toast.success(res.data.message);
             }

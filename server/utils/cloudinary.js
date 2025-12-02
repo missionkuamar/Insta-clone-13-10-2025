@@ -10,10 +10,10 @@ cloudinary.config({
 });
 
 // Debug:
-console.log("DEBUG CLOUDINARY VARS:", {
-  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
-  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING"
-});
+// console.log("DEBUG CLOUDINARY VARS:", {
+//   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+//   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+//   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING"
+// });
 
 export default cloudinary;

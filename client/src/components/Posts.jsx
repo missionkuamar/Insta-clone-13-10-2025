@@ -1,11 +1,13 @@
 import React from 'react'
 import { Post } from './Post'
+import { useSelector } from 'react-redux'
 
 export const Posts = () => {
+  const {posts} = useSelector(store => store.post);
   return (
     <div className='w-[550px] h-[600px]'>
         {
-            [1,2,3,4,5,6,7,8,9,10].map((item, index) => <Post key={index} item={item} />  )
+          posts.map((post) => <Post key={post._id} post={post} />  )
         }
     </div>
   )

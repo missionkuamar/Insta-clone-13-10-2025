@@ -8,12 +8,18 @@ import { Loader2 } from 'lucide-react'
 import axios from 'axios'
 import { toast } from 'sonner'
 import { POST_API_END_POINT } from '@/utils/constant'
+import { useDispatch, useSelector } from 'react-redux'
+import { setPosts } from '@/redux/postSlice'
 export const CreatePost = ({ open, setOpen }) => {
     const imageRef = useRef();
     const [file, setFile] = useState(null);
     const [caption, setCaption] = useState("");
     const [imagePreview, setImagePreview] = useState("");
     const [loading, setLoading] = useState(false)
+    const { user } = useSelector(store => store.auth);
+    const { posts } = useSelector(store => store.post)
+   
+    const dispatch = useDispatch();
     const filechangeHander = async (e) => {
         const f = e.target.files?.[0];
         if (f) {
@@ -27,10 +33,10 @@ export const CreatePost = ({ open, setOpen }) => {
         e.preventDefault(); // fixed typo
         try {
             // console.log(file, caption)
-           if (!file) {
-  alert("Please select an image");
-  return;
-}
+            if (!file) {
+                toast.error("Please select an image");
+                return;
+            }
             setLoading(true)
             const formData = new FormData();
             formData.append("caption", caption);
@@ -43,7 +49,12 @@ export const CreatePost = ({ open, setOpen }) => {
             });
             console.log(res)
             if (res.data.success) {
+                dispatch(setPosts([res.data.post, ...posts]));
                 toast.success(res?.data?.message)
+                setOpen(false)
+                setCaption("");
+                setFile(null);
+                setImagePreview("");
             }
         } catch (error) {
             console.log(error)
@@ -66,13 +77,13 @@ export const CreatePost = ({ open, setOpen }) => {
                 {/* User info */}
                 <div className="flex gap-3 items-center mb-3">
                     <Avatar>
-                        <AvatarImage src="" alt="img" />
+                        <AvatarImage src={user?.profilePicture} alt="img" />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
 
                     <div>
-                        <h1 className="font-semibold text-xs">UserName</h1>
-                        <span className="text-gray-600 text-xs">Bio here....</span>
+                        <h1 className="font-semibold text-xs">{user?.username}</h1>
+                        <span className="text-gray-600 text-xs">{user?.bio}</span>
                     </div>
                 </div>
 
@@ -117,7 +128,7 @@ export const CreatePost = ({ open, setOpen }) => {
                     imagePreview && (
                         loading ? (
                             <Button>
-                                <Loader2 calcMode='mr-2 h-4 w-4 animate-spin' />
+                                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                                 Please wait
                             </Button>
                         ) : (
