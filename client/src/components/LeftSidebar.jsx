@@ -39,10 +39,13 @@ const dispatch = useDispatch()
     const sidebarHandler = (textType) => {
         if (textType === "Logout") return logoutHandler();
   if (textType === "Home") navigate("/");
-  if (textType === "Profile") navigate("/profile");
+ 
+  if(textType === 'Profile') navigate(`/profile/${user?._id}`)
+    if(textType === "Messages") navigate('/chat')
   if(textType === "Create") {
     setOpen(true)
   }
+  
     }
     const sidebarItems = [
     { icon: <Home />, text: "Home" },

@@ -43,6 +43,7 @@ export const login = async (req, res) => {
                 success: false,
             });
         }
+
         let user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({
@@ -50,26 +51,31 @@ export const login = async (req, res) => {
                 success: false,
             });
         }
+
         const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (!isPasswordMatch) {
             return res.status(401).json({
                 message: "Incorrect email or password",
                 success: false,
             });
-        };
+        }
 
         const token = await jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1d' });
 
-        // populate each post if in the posts array
+        // Ensure user.posts is an array and populate posts
         const populatedPosts = await Promise.all(
-            user.posts.map( async (postId) => {
+            (user.posts || []).map(async (postId) => { // Check for user.posts being null or undefined
                 const post = await Post.findById(postId);
-                if(post.author.equals(user._id)){
+                if (post && post.author && post.author.equals(user._id)) {
                     return post;
                 }
                 return null;
             })
-        )
+        );
+
+        // Filter out null values from the populatedPosts array
+        const validPosts = populatedPosts.filter(post => post !== null);
+
         user = {
             _id: user._id,
             username: user.username,
@@ -78,8 +84,9 @@ export const login = async (req, res) => {
             bio: user.bio,
             followers: user.followers,
             following: user.following,
-            posts: populatedPosts
-        }
+            posts: validPosts // Only return valid posts
+        };
+
         return res.cookie('token', token, { httpOnly: true, sameSite: 'strict', maxAge: 1 * 24 * 60 * 60 * 1000 }).json({
             message: `Welcome back ${user.username}`,
             success: true,
@@ -88,8 +95,13 @@ export const login = async (req, res) => {
 
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "An error occurred. Please try again.",
+            success: false,
+        });
     }
 };
+
 export const logout = async (_, res) => {
     try {
         return res.cookie("token", "", { maxAge: 0 }).json({
