@@ -1,148 +1,109 @@
-📸 Instagram Clone – MERN Stack
+# 📸 Instagram Clone – MERN Stack
 
-A full-stack Instagram clone built using the MERN stack with real-world features like authentication, posts, follow system, real-time chat, and profile management.
+A full-stack Instagram clone built using the **MERN stack** with real-world features like authentication, posts, follow system, real-time chat, and profile management.
 
-This project focuses on clean UI, scalable backend, and modern React patterns.
+This project focuses on **clean UI**, **scalable backend**, and **modern React patterns**.
 
-🖼 Screenshots
+---
 
-Create a folder in root:
+## 🖼 Screenshots
 
-/screenshots
+### 🔐 Login Page
+![Login Page](screenshots/login.png)
 
+### 📝 Signup Page
+![Signup Page](screenshots/signup.png)
 
-Add your images like this:
+### 🏠 Home Feed
+![Home Feed](screenshots/home.png)
 
-screenshots/
-├── login.png
-├── signup.png
-├── home.png
-├── profile.png
-├── chat.png
-├── create-post.png
-├── edit-profile.png
-├── other-profile.png
+### 👤 Profile Page
+![Profile Page](screenshots/profile.png)
 
+### 👥 Other User Profile
+![Other Profile](screenshots/other-profile.png)
 
-![alt text](17.12.2025_19.18.18_REC.png)
-Then images will render automatically on GitHub 👇
+### 💬 Messaging
+![Messaging](screenshots/chat.png)
 
-🔐 Login Page
+### ➕ Create Post
+![Create Post](screenshots/create-post.png)
 
-📝 Signup Page
+### ✏️ Edit Profile
+![Edit Profile](screenshots/edit-profile.png)
 
-🏠 Home Feed
+---
 
-👤 Profile Page
+## 🚀 Features
 
-💬 Messaging
+### 🔐 Authentication
+- Signup & Login
+- JWT-based authentication
+- Secure password hashing
+- Logout support
 
-➕ Create Post
+### 🏠 Feed & Posts
+- Create image posts
+- Like & comment on posts
+- View posts from other users
 
-✏️ Edit Profile
+### 👤 User Profile
+- Profile photo & bio
+- Followers / following count
+- View own & other users’ profiles
+- Edit profile details
 
-🚀 Features
-🔐 Authentication
+### 🧑‍🤝‍🧑 Follow System
+- Follow / unfollow users
+- Suggested users section
 
-Signup & Login
+### 💬 Real-Time Chat
+- One-to-one messaging
+- Online / offline status
+- Socket.io integration
 
-JWT-based authentication
+### 🧭 Navigation
+- Home
+- Search
+- Explore
+- Messages
+- Notifications
+- Create Post
+- Profile
+- Logout
 
-Secure password hashing
+---
 
-Logout support
+## 🛠 Tech Stack
 
-🏠 Feed & Posts
+### Frontend
+- React.js
+- Vite
+- Redux Toolkit
+- React Router
+- Tailwind CSS
+- Axios
 
-Create image posts
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
 
-Like & comment on posts
+### Real-Time
+- Socket.io
 
-View posts from other users
+### Other Tools
+- Multer (image upload)
+- Cloudinary (media storage)
+- JWT (authentication)
+- bcrypt (password hashing)
 
-👤 User Profile
+---
 
-Profile photo & bio
+## 📂 Folder Structure
 
-Followers / following count
-
-View own & other users’ profiles
-
-Edit profile details
-
-🧑‍🤝‍🧑 Follow System
-
-Follow / unfollow users
-
-Suggested users section
-
-💬 Real-Time Chat
-
-One-to-one messaging
-
-Online / offline status
-
-Socket.io integration
-
-🧭 Navigation
-
-Home
-
-Search
-
-Explore
-
-Messages
-
-Notifications
-
-Create Post
-
-Profile
-
-Logout
-
-🛠 Tech Stack
-Frontend
-
-React.js
-
-Vite
-
-Redux Toolkit
-
-React Router
-
-Tailwind CSS
-
-Axios
-
-Backend
-
-Node.js
-
-Express.js
-
-MongoDB
-
-Mongoose
-
-Real-Time
-
-Socket.io
-
-Other Tools
-
-Multer (image upload)
-
-Cloudinary (media storage)
-
-JWT (auth)
-
-bcrypt (password hashing)
-
-📂 Folder Structure (Detailed)
-📦 Root
+### 📦 Root
 insta-clone/
 ├── client/
 ├── server/
@@ -150,121 +111,137 @@ insta-clone/
 ├── .gitignore
 └── README.md
 
-🖥 Client (Frontend)
+yaml
+Copy code
+
+---
+
+### 🖥 Client (Frontend)
 client/
 ├── public/
 ├── src/
-│   ├── assets/              # Images & static assets
-│   ├── components/
-│   │   ├── ui/              # Reusable UI components
-│   │   ├── ChatPage.jsx
-│   │   ├── Comment.jsx
-│   │   ├── CreatePost.jsx
-│   │   ├── EditProfile.jsx
-│   │   ├── Feed.jsx
-│   │   ├── Home.jsx
-│   │   ├── Login.jsx
-│   │   ├── Signup.jsx
-│   │   ├── Profile.jsx
-│   │   └── SuggestedUsers.jsx
-│   │
-│   ├── hooks/               # Custom React hooks
-│   │   ├── useGetAllPost.jsx
-│   │   ├── useGetAllMessage.jsx
-│   │   ├── useGetSuggestedUser.jsx
-│   │   └── useGetUserProfile.jsx
-│   │
-│   ├── redux/
-│   │   ├── authSlice.js
-│   │   ├── chatSlice.js
-│   │   ├── postSlice.js
-│   │   ├── socketSlice.js
-│   │   └── store.js
-│   │
-│   ├── utils/
-│   │   └── constant.js
-│   │
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
+│ ├── assets/ # Static assets
+│ ├── components/
+│ │ ├── ui/ # Reusable UI components
+│ │ ├── ChatPage.jsx
+│ │ ├── Comment.jsx
+│ │ ├── CreatePost.jsx
+│ │ ├── EditProfile.jsx
+│ │ ├── Feed.jsx
+│ │ ├── Home.jsx
+│ │ ├── Login.jsx
+│ │ ├── Signup.jsx
+│ │ ├── Profile.jsx
+│ │ └── SuggestedUsers.jsx
+│ │
+│ ├── hooks/
+│ │ ├── useGetAllPost.jsx
+│ │ ├── useGetAllMessage.jsx
+│ │ ├── useGetSuggestedUser.jsx
+│ │ └── useGetUserProfile.jsx
+│ │
+│ ├── redux/
+│ │ ├── authSlice.js
+│ │ ├── chatSlice.js
+│ │ ├── postSlice.js
+│ │ ├── socketSlice.js
+│ │ └── store.js
+│ │
+│ ├── utils/
+│ │ └── constant.js
+│ │
+│ ├── App.jsx
+│ ├── main.jsx
+│ └── index.css
 │
 ├── tailwind.config.js
 ├── vite.config.js
 └── package.json
 
-🖧 Server (Backend)
+yaml
+Copy code
+
+---
+
+### 🖧 Server (Backend)
 server/
 ├── controllers/
-│   ├── user.controller.js
-│   ├── post.controller.js
-│   └── message.controller.js
+│ ├── user.controller.js
+│ ├── post.controller.js
+│ └── message.controller.js
 │
 ├── models/
-│   ├── user.model.js
-│   ├── post.model.js
-│   ├── comment.model.js
-│   ├── conversation.model.js
-│   └── message.model.js
+│ ├── user.model.js
+│ ├── post.model.js
+│ ├── comment.model.js
+│ ├── conversation.model.js
+│ └── message.model.js
 │
 ├── routes/
-│   ├── user.route.js
-│   ├── post.route.js
-│   └── message.route.js
+│ ├── user.route.js
+│ ├── post.route.js
+│ └── message.route.js
 │
 ├── middlewares/
-│   ├── isAuthenticated.js
-│   └── multer.js
+│ ├── isAuthenticated.js
+│ └── multer.js
 │
 ├── utils/
-│   ├── db.js
-│   ├── cloudinary.js
-│   └── datauri.js
+│ ├── db.js
+│ ├── cloudinary.js
+│ └── datauri.js
 │
 ├── index.js
 ├── .env
 └── package.json
 
-⚙️ Installation & Setup
-1️⃣ Clone Repo
+yaml
+Copy code
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone Repository
+```bash
 git clone https://github.com/your-username/instagram-clone.git
 cd instagram-clone
-
-2️⃣ Backend
+2️⃣ Backend Setup
+bash
+Copy code
 cd server
 npm install
 npm run dev
+Explain .env:
 
-
-Create .env:
-
+env
+Copy code
 PORT=5000
 MONGO_URI=your_mongodb_url
 JWT_SECRET=your_secret
 CLOUDINARY_NAME=xxx
 CLOUDINARY_API_KEY=xxx
 CLOUDINARY_API_SECRET=xxx
-
-3️⃣ Frontend
+3️⃣ Frontend Setup
+bash
+Copy code
 cd client
 npm install
 npm run dev
-
 🎯 Future Improvements
-
 Stories
 
 Reels
 
-Notifications (real-time)
+Real-time notifications
 
 Dark mode 🌙
 
 Save posts
 
-Search users & hashtags
+User & hashtag search
 
 👨‍💻 Author
-
 Mission Kumar
 MERN Stack Developer
 🧠 Learn code with modern stack
@@ -272,10 +249,9 @@ MERN Stack Developer
 📩 DM for collaboration
 
 ⭐ Show Some Love
-
 If you like this project:
 
-⭐ Star the repo
+⭐ Star the repository
 
 🍴 Fork it
 
