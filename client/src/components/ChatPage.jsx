@@ -8,7 +8,7 @@ import { MessageCircleCode } from 'lucide-react';
 import Messages from './Messages';
 import axios from 'axios';
 import { setMessages } from '@/redux/chatSlice';
-
+import { MESSAGE_API_END_POINT } from '@utils/constant';
 const ChatPage = () => {
     const [textMessage, setTextMessage] = useState("");
     const { user, suggestedUsers, selectedUser } = useSelector(store => store.auth);
@@ -18,7 +18,7 @@ const ChatPage = () => {
     const sendMessageHandler = async (receiverId) => {
         try {
             const res = await axios.post(
-                `https://instaclone-g9h5.onrender.com/api/v1/message/send/${receiverId}`,
+                `${MESSAGE_API_END_POINT}/send/${receiverId}`,
                 { textMessage },
                 {
                     headers: { 'Content-Type': 'application/json' },
