@@ -13,6 +13,7 @@ const ChatPage = () => {
     const [textMessage, setTextMessage] = useState("");
     const { user, suggestedUsers, selectedUser } = useSelector(store => store.auth);
     const { onlineUsers, messages } = useSelector(store => store.chat);
+    console.log(onlineUsers);
     const dispatch = useDispatch();
 
     const sendMessageHandler = async (receiverId) => {
@@ -50,7 +51,8 @@ const ChatPage = () => {
 
                 <div className="overflow-y-auto h-[80vh]">
                     {suggestedUsers.map((s) => {
-                        const isOnline = onlineUsers.includes(s?._id);
+                        const isOnline = onlineUsers?.includes(String(s._id));
+
 
                         return (
                             <div

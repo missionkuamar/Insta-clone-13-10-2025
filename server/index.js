@@ -2,7 +2,7 @@ import express, { urlencoded } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-
+import { app, server } from "./socket/socket.js";
 import path from "path";
 import connectDB from "./utils/db.js";
  import userRoute from "./routes/user.route.js";
@@ -11,7 +11,7 @@ import messageRoute from "./routes/message.route.js";
 
 dotenv.config();
 
-const app  = express()
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -46,7 +46,7 @@ app.use((req, res, next) => {
   res.sendFile(path.join(_dirname, 'client', 'dist', 'index.html'));
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
 connectDB();
     console.log(`Server listen at port ${PORT}`);
 });
